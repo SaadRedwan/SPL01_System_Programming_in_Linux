@@ -1,18 +1,14 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "../include/header/srrlib.h"
 
-#define ECHO_LENGTH 4
 
-int femtoshell_main(void);
-void get_args(char *command, int *argc, char ***argv); 
+
 
 int main() {
     femtoshell_main();	   
     return 0;
 }
 
-int femtoshell_main() {
+void femtoshell_main() {
 	char *command = NULL;  
     	size_t len = 0;     
     	ssize_t len_command;       
@@ -68,7 +64,6 @@ int femtoshell_main() {
         command = NULL;
         len = 0;
     }
-    return 0;
 }
 
 void get_args(char *command, int *argc, char ***argv) {

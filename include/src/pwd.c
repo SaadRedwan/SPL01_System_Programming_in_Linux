@@ -1,24 +1,16 @@
-#include <stdio.h>   
-#include <stdlib.h>  
-#include <unistd.h>
-#include <limits.h>  
+#include "../header/utils.h"
 
 
 
-int main() {
-	
-	char buffer[PATH_MAX];
+
+void pwd_main() {
+    char buffer[BUF_SIZE];
 
 
-    	if (getcwd(buffer, PATH_MAX) != NULL) 
-	{
-        	printf("%s\n", buffer);
-    	}
-    	else 
-    	{
-		perror("getcwd() failed"); 
-       		exit(-1);
-    	}
-
-    	return 0;
+    if (getcwd(buffer, BUF_SIZE) != NULL) {
+	printf("%s\n", buffer);
+    } else {
+	perror("getcwd() failed");
+	exit(-1);
+    }
 }
