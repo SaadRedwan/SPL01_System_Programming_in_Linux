@@ -1,0 +1,5 @@
+Hello Vim
+You are a good editor
+Hello Vim
+
+

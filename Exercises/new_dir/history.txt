@@ -1,0 +1,123 @@
+    1  sudo /etc/default/grub
+    2  sudo vi /etc/default/grub
+    3  sudo update-grub
+    4  sudo reboot 
+    5  su 
+    6  sudo passwd root
+    7  su
+    8  lsb_release -a
+    9  username -a
+   10  uname -a
+   11  cleae
+   12  clear
+   13  ls 
+   14  man ls 
+   15  man scanf 
+   16  man man
+   17  man -k printf
+   18  ls --help 
+   19  ls 
+   20  which ls 
+   21  cat ls 
+   22  type ls 
+   23  ls -l
+   24  ls -l /home/
+   25  man ls 
+   26  ls 
+   27  pwd
+   28  cd /
+   29  ls 
+   30  ls -all
+   31  ls -r
+   32  cd /home/saad/
+   33  cd /home/saad/Downloads/
+   34  cd /home/saad/
+   35  ls 
+   36  ls ..
+   37  ls ../..
+   38  cd ..
+   39  ls ./etc/
+   40  cd home/saad/
+   41  ls 
+   42  clear
+   43  mkdir new_dr
+   44  ls 
+   45  ls new_dir
+   46  mkdir new_dir
+   47  ls 
+   48  rmdir new_d new_dir
+   49  rmdir new_dr new_dir
+   50  rmdir new_d
+   51  rmdir new_dr
+   52  ls 
+   53  cd Desktop/
+   54  man bash 
+   55  man sh 
+   56  man bash 
+   57  which ls 
+   58  which cd 
+   59  type cd 
+   60  clear
+   61  ls 
+   62  mkdir new_dir
+   63  ls 
+   64  cp /etc/passwd ./
+   65  ls 
+   66  mkdir another_dir
+   67  ls 
+   68  mv passwd ./another_dir/
+   69  ls 
+   70  cd another_dir/
+   71  ls 
+   72  mv passwd mohamed
+   73  ls 
+   74  mv mohamed ../passwd
+   75  ls 
+   76  cd .
+   77  cd ..
+   78  ls 
+   79  ls -l 
+   80  cat passwd 
+   81  clear
+   82  more /etc/passwd
+   83  less /etc/passwd
+   84  clear
+   85  sudo apt install gedit 
+   86  gedit 
+   87  gedit passwd 
+   88  man vim 
+   89  clear
+   90  vim
+   91  ls 
+   92  cat file.txt 
+   93  vim
+   94  vim file.txt 
+   95  cat file.txt 
+   96  vim file.txt 
+   97  clear
+   98  ls 
+   99  ls > ls_output.txt
+  100  ls 
+  101  cat ls_output.txt 
+  102  cat < file.txt 
+  103  cat 
+  104  cat < file.txt > cat_out.txt
+  105  ls 
+  106  cat cat_out.txt 
+  107  ls 
+  108  mv cat_out.txt  ls_output.txt  file.txt  ./new_dir
+  109  l s
+  110  ls 
+  111  cd new_dir/
+  112  ls 
+  113  clear
+  114  man grep
+  115  grep reda ../passwd 
+  116  grep saad ../passwd 
+  117  grep -r  saad ../passwd 
+  118  grep -r  saad
+  119  grep -r saad ..
+  120  clear
+  121  ls 
+  122  ls | grep ls 
+  123  history > history.txt

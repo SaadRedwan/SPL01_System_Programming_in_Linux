@@ -1,0 +1,254 @@
+    1  sudo /etc/default/grub
+    2  sudo vi /etc/default/grub
+    3  sudo update-grub
+    4  sudo reboot 
+    5  su 
+    6  sudo passwd root
+    7  su
+    8  lsb_release -a
+    9  username -a
+   10  uname -a
+   11  cleae
+   12  clear
+   13  ls 
+   14  man ls 
+   15  man scanf 
+   16  man man
+   17  man -k printf
+   18  ls --help 
+   19  ls 
+   20  which ls 
+   21  cat ls 
+   22  type ls 
+   23  ls -l
+   24  ls -l /home/
+   25  man ls 
+   26  ls 
+   27  pwd
+   28  cd /
+   29  ls 
+   30  ls -all
+   31  ls -r
+   32  cd /home/saad/
+   33  cd /home/saad/Downloads/
+   34  cd /home/saad/
+   35  ls 
+   36  ls ..
+   37  ls ../..
+   38  cd ..
+   39  ls ./etc/
+   40  cd home/saad/
+   41  ls 
+   42  clear
+   43  mkdir new_dr
+   44  ls 
+   45  ls new_dir
+   46  mkdir new_dir
+   47  ls 
+   48  rmdir new_d new_dir
+   49  rmdir new_dr new_dir
+   50  rmdir new_d
+   51  rmdir new_dr
+   52  ls 
+   53  cd Desktop/
+   54  man bash 
+   55  man sh 
+   56  man bash 
+   57  which ls 
+   58  which cd 
+   59  type cd 
+   60  clear
+   61  ls 
+   62  mkdir new_dir
+   63  ls 
+   64  cp /etc/passwd ./
+   65  ls 
+   66  mkdir another_dir
+   67  ls 
+   68  mv passwd ./another_dir/
+   69  ls 
+   70  cd another_dir/
+   71  ls 
+   72  mv passwd mohamed
+   73  ls 
+   74  mv mohamed ../passwd
+   75  ls 
+   76  cd .
+   77  cd ..
+   78  ls 
+   79  ls -l 
+   80  cat passwd 
+   81  clear
+   82  more /etc/passwd
+   83  less /etc/passwd
+   84  clear
+   85  sudo apt install gedit 
+   86  gedit 
+   87  gedit passwd 
+   88  man vim 
+   89  clear
+   90  vim
+   91  ls 
+   92  cat file.txt 
+   93  vim
+   94  vim file.txt 
+   95  cat file.txt 
+   96  vim file.txt 
+   97  clear
+   98  ls 
+   99  ls > ls_output.txt
+  100  ls 
+  101  cat ls_output.txt 
+  102  cat < file.txt 
+  103  cat 
+  104  cat < file.txt > cat_out.txt
+  105  ls 
+  106  cat cat_out.txt 
+  107  ls 
+  108  mv cat_out.txt  ls_output.txt  file.txt  ./new_dir
+  109  l s
+  110  ls 
+  111  cd new_dir/
+  112  ls 
+  113  clear
+  114  man grep
+  115  grep reda ../passwd 
+  116  grep saad ../passwd 
+  117  grep -r  saad ../passwd 
+  118  grep -r  saad
+  119  grep -r saad ..
+  120  clear
+  121  ls 
+  122  ls | grep ls 
+  123  history > history.txt
+  124  ls
+  125  cat history.txt 
+  126  cleR
+  127  CLEAR
+  128  clear
+  129  ls 
+  130  history 
+  131  clear
+  132  sudo apt update
+  133  sudo apt install linux-azure
+  134  sudo dpkg --configure -a
+  135  sudo apt install linux-azure
+  136  systemctl status hv_kvp_daemon
+  137  sudo systemctl start hv_kvp_daemon
+  138  sudo apt install linux-azure
+  139  dmesg | grep -i "Hyper-V"
+  140  su -
+  141  sudo adduser $(whoami) ssl-cert
+  142  sudo systmctl restart xrdp
+  143  su -
+  144  cd Desktop/
+  145  mkdir build_steps
+  146  cd build_steps/
+  147  vim hello.c
+  148  ls 
+  149  gcc hello.c 
+  150  ls 
+  151  ls -l
+  152  ./a.out 
+  153  ls 
+  154  cd Desktop/
+  155  ls 
+  156  cd build_steps/
+  157  ls 
+  158  gcc -E hello.c 
+  159  ls 
+  160  gcc -E hello.c hello.i 
+  161  ls 
+  162  gcc -E hello.c > hello.i
+  163  ls 
+  164  clear
+  165  ls 
+  166  gcc -S hello.i > hello.s
+  167  ls 
+  168  cat hello.s
+  169  clear
+  170  gcc -c hello.s
+  171  ls 
+  172  cat hello.o
+  173  clear
+  174  ls 
+  175  gcc hello.o myexe
+  176  gcc hello.o -o myexe
+  177  ls 
+  178  /yex
+  179  ./myexe 
+  180  vim hello.c
+  181  ls 
+  182  rm hello.i hello.o hello..s
+  183  rm hello.i hello.o hello.s
+  184  ls 
+  185  rm myexe 
+  186  ls 
+  187  vim hello.c 
+  188  gcc -E hello.c | less
+  189  vim hello.c 
+  190  ls 
+  191  clear
+  192  gcc -E hello.c |less
+  193  gcc -E hello.c -o hello.i
+  194  ls 
+  195  gcc -S hello.i
+  196  ls 
+  197  vim hello.s
+  198  gcc -c hello.s
+  199  ls 
+  200  vim hello.o
+  201  file hello.o
+  202  file hello.i
+  203  file hello.s
+  204  file hello.o
+  205  gcc hello.o -o funalhelloelf
+  206  file funalhelloelf 
+  207  mv funalhelloelf finalhelloelf 
+  208  ls 
+  209  ./finalhelloelf 
+  210  rm hello.[ios]
+  211  ls 
+  212  ls -l 
+  213  clear
+  214  rm finalhelloelf 
+  215  ls 
+  216  man gcc 
+  217  gcc -save-temps hello.c 
+  218  ls 
+  219  ls -l 
+  220  cl
+  221  MAN GCC 
+  222  man gcc
+  223  gcc hello.c -nolibc
+  224  ls 
+  225  gcc hello.c 
+  226  ls 
+  227  file a
+  228  file a.out 
+  229  man uname 
+  230  uname -a
+  231  man readelf 
+  232  cle
+  233  clea
+  234  clear
+  235  readelf a.out 
+  236  readelf -h a.out 
+  237  clear
+  238  readelf -S a.out | less
+  239  readelf -s a.out | less
+  240  gclea
+  241  clear
+  242  gcc hello.c --static 
+  243  ls 
+  244  file a.out 
+  245  readelf -s a.out 
+  246  readelf -s a.out  | less
+  247  gcc -o dynhello hello.c 
+  248  ls -l 
+  249  clear
+  250  man objdump
+  251  objdump a.out 
+  252  objdump -D  a.out |less
+  253  clear
+  254  history > history 

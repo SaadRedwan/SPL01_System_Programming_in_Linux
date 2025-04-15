@@ -1,0 +1,5 @@
+another_dir
+file.txt
+ls_output.txt
+new_dir
+passwd
