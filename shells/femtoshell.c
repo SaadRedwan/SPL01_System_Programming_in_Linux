@@ -1,4 +1,4 @@
-#include "../include/header/srrlib.h"
+#include "./../include/header/srrlib.h"
 
 
 
@@ -16,24 +16,27 @@ void femtoshell_main() {
     	char **argv;
 
     	while (1) {
+        	
         	printf("srr femto shell prompt$ ");
-        	len_command = getline(&command, &len, stdin);  
+                len_command = getline(&command, &len, stdin);
 
-        	if (len_command == -1) {  
-            		if (command) { 
-                		free(command);
-            		}
-            		break;
-        	}
-
-        	if (len_command > 0 && command[len_command - 1] == '\n') {
-            		command[len_command - 1] = '\0';
-        	}
+                if (len_command == -1) {
+                        if (errno != 0) {
+                                fprintf(stderr, "Error occurred while reading command: %s.\n", strerror(errno));
+                                free(command);
+                                exit(-1);
+                        } else {  /*to avoid memory leak as getline allocate mem even if EOF occoured */
+                                free(command);
+                                return;
+                        }
+                } else {
+                        command[len_command - 1] = '\0';
+                }
 
         	if (strlen(command) == 0) {  
             		continue;
         	} else {
-            		get_args(command, &argc, &argv);
+            		parse_command(command, &argc, &argv);
 			if (strcmp(argv[0], "exit") == 0) {  
                 		printf("Good Bye\n");
                 		free(command);
@@ -64,23 +67,4 @@ void femtoshell_main() {
         command = NULL;
         len = 0;
     }
-}
-
-void get_args(char *command, int *argc, char ***argv) {
-    	
-	*argc = 0;
-    	*argv = (char**)malloc((strlen(command) / 2 + 2) * sizeof(char *));
-
-    	if (strlen(command) < 1) {
-        	return;
-    	}
-
-    	char *token = strtok(command, " ");
-   
-
-    	while (token != NULL) {
-        	(*argv)[(*argc)] = strdup(token);
-	       	token = strtok(NULL, " ");
-		(*argc)++;
-    	}
 }
