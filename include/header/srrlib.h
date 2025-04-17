@@ -4,16 +4,17 @@
 
 
 
-#include <stdio.h>
+#include <errno.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
+#include <sys/wait.h>
 
 
-#define ECHO_LENGTH 4
 
 
 void femtoshell_main(void);
-void get_args(char *command, int *argc, char ***argv);
-
+void parse_command(char *command, int *argc, char ***argv);
+void picoshell_main(void);
 
 #endif /* SRRLIB_H */

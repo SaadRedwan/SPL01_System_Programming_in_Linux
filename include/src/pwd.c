@@ -3,14 +3,13 @@
 
 
 
-void pwd_main() {
-    char buffer[BUF_SIZE];
-
-
-    if (getcwd(buffer, BUF_SIZE) != NULL) {
-	printf("%s\n", buffer);
-    } else {
-	perror("getcwd() failed");
-	exit(-1);
+int pwd_main() {
+    char *cwd = getcwd(NULL, 0);
+    if (!cwd) {
+        perror("pwd");
+        return -1;
     }
+    printf("%s\n", cwd);
+    free(cwd);
+    return 0;
 }

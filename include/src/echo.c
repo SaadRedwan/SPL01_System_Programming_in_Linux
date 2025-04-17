@@ -2,84 +2,94 @@
 
 
 
-
 void echo_main(int argc, char **argv) {
+    int n_flag = 0;
+    int e_flag = 0;
+    int E_flag = 0;
+    int suppress_newline = 0;
+    int start = 1;
 
-    int i, j;
+    // Parse command line flags
+    while (start < argc && argv[start][0] == '-') {
+        char *flag = argv[start] + 1;  // Skip '-'
+        if (*flag == '\0') break;      // Handle lone '-' argument
+        
+        while (*flag) {
+            switch (*flag) {
+                case 'n': n_flag = 1; break;
+                case 'e': 
+                    e_flag = 1;
+                    E_flag = 0;  // -e takes precedence over -E
+                    break;
+                case 'E':
+                    E_flag = 1;
+                    e_flag = 0;  // -E takes precedence over -e
+                    break;
+            }
+            flag++;
+        }
+        start++;
+    }
 
+    int process_escapes = e_flag && !E_flag;
 
-    if (argc != 1)		//if argv is empty or not
-    {
-	if (strcmp("-n", argv[1]) == 0 || strcmp("-nE", argv[1]) == 0
-	    || strcmp("-En", argv[1]) == 0) {
-	    if (strcmp("-E", argv[2]) == 0) {
-		i = 3;
-	    } else if (strcmp("-e", argv[2]) != 0
-		       || strcmp("-E", argv[2]) != 0) {
-		i = 2;
-	    }
+    // Process arguments
+    for (int i = start; i < argc && !suppress_newline; i++) {
+        char *arg = argv[i];
+        while (*arg && !suppress_newline) {
+            if (process_escapes && *arg == '\\') {
+                arg++;  // Skip backslash
+                
+                if (*arg == '\0') {
+                    putchar('\\');
+                    break;
+                }
 
-	    for (; i < argc; i++)	//loop on argv elements 
-	    {
-		for (j = 0; argv[i][j] != '\0'; j++)	//print one element
-		{
-		    putchar(argv[i][j]);	//print char in the element
-		}
-		if (i != (argc - 1)) {
-		    putchar(' ');	// print space between elements if we have more than one srting seperated with spaces
-		}
-	    }
-	} else if (strcmp("-n", argv[1]) != 0 && strcmp("-e", argv[1]) != 0)	//to check if user using a flag for echo command
-	{
-	    if (strcmp("-E", argv[1]) == 0) {
-		i = 2;
-	    } else {
-		i = 1;
-	    }
+                switch (*arg) {
+                    case 'a':  putchar('\a'); break;
+                    case 'b':  putchar('\b'); break;
+                    case 'c':  suppress_newline = 1; break;
+                    case 'e':  putchar('\033'); break;
+                    case 'f':  putchar('\f'); break;
+                    case 'n':  putchar('\n'); break;
+                    case 'r':  putchar('\r'); break;
+                    case 't':  putchar('\t'); break;
+                    case 'v':  putchar('\v'); break;
+                    case '\\': putchar('\\'); break;
+                    case '0':  // Octal escape
+                    {
+                        int val = 0;
+                        int digits = 0;
+                        arg++;  // Skip '0'
+                        
+                        while (digits < 3 && *arg >= '0' && *arg <= '7') {
+                            val = val * 8 + (*arg - '0');
+                            arg++;
+                            digits++;
+                        }
+                        putchar(val);
+                        arg--;  // Compensate for final increment
+                        break;
+                    }
+                    default:
+                        putchar('\\');
+                        putchar(*arg);
+                        break;
+                }
+                arg++;
+            } else {
+                putchar(*arg++);
+            }
+        }
 
-	    for (; i < argc; i++)	//loop on argv elements 
-	    {
-		for (j = 0; argv[i][j] != '\0'; j++)	//print one element
-		{
-		    putchar(argv[i][j]);	//print char in the element
-		}
-		if (i != (argc - 1)) {
-		    putchar(' ');	// print space between elements if we have more than one srting seperated with spaces
-		}
-	    }
-	    putchar('\n');	//new line to start shell line from new line
-	} else
-	    if ((strcmp("-e", argv[1]) == 0 || strcmp("-en", argv[1]) == 0
-		 || strcmp("ne", argv[1]) == 0)
-		|| (strcmp("-n", argv[1]) == 0
-		    && strcmp("-e", argv[2]) == 0)) {
-	    if (strcmp("-n", argv[2]) == 0 || strcmp("-e", argv[2]) == 0) {
-		i = 3;
-	    } else {
-		i = 2;
-	    }
+        // Add space between arguments unless suppressed
+        if (i < argc - 1 && !suppress_newline) {
+            putchar(' ');
+        }
+    }
 
-
-	    for (; i < argc; i++) {
-		for (j = 0; argv[i][j] != '\0'; j++) {
-		    if (argv[i][j] == '\\' && argv[i][j + 1] == 'n') {
-			putchar('\n');
-			j++;
-		    } else {
-			putchar(argv[i][j]);
-		    }
-		}
-		if (i != (argc - 1)) {
-		    putchar(' ');	// print space between elements if we have more than one srting seperated with spaces
-		}
-
-	    }
-	    if (strcmp("-en", argv[1]) != 0 || strcmp("ne", argv[1]) != 0
-		|| strcmp("-n", argv[2]) != 0) {
-		putchar('\n');
-	    }
-	}
-    } else {
-	putchar('\n');		//print a new line if there is no elements in the argv
+    // Add final newline unless suppressed
+    if (!n_flag && !suppress_newline) {
+        putchar('\n');
     }
 }
