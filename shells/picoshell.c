@@ -2,7 +2,7 @@
 #include "./../include/header/utils.h"
 
 
-
+int last = 0;
 
 int main() {
     picoshell_main();
@@ -11,6 +11,7 @@ int main() {
 
 void picoshell_main() {
     
+     int last_status = 0;
     char *command = NULL;
     size_t len = 0;
     ssize_t len_command;
@@ -19,18 +20,21 @@ void picoshell_main() {
 
     while (1) {
 	printf("srr pico shell prompt$ ");
+	fflush(stdout);
+	errno = 0;
+	
+	
 	len_command = getline(&command, &len, stdin);
+	
 
 	if (len_command == -1) {
 	    if (errno != 0) {
-		fprintf(stderr,
-			"Error occurred while reading command: %s.\n",
-			strerror(errno));
+		fprintf(stderr, "Error occurred while reading command: %s.\n",strerror(errno));
 		free(command);
-		exit(-1);
-	    } else {
+		exit(1);
+	    } else { //EOF
 		free(command);
-		return;
+		exit(last);
 	    }
 	} else {
 	    command[len_command - 1] = '\0';
@@ -49,31 +53,29 @@ void picoshell_main() {
 		free(argv);
 		exit(0);
 	    } else if (strcmp(argv[0], "cd") == 0) {
-		    cd_main(argc, argv);
+		last_status = cd_main(argc, argv);
 	    } else if (strcmp(argv[0], "cp") == 0) {
 		cp_main(argc, argv);
 	    } else if (strcmp(argv[0], "echo") == 0) {
 		echo_main(argc, argv);
 	    } else if (strcmp(argv[0], "mv") == 0) {
-		mv_main(argc, argv);
+		last_status = mv_main(argc, argv);
 	    } else if (strcmp(argv[0], "pwd") == 0) {
 		pwd_main();
 	    } else {
-		id_t pid = fork();
-		
-		if (pid < 0) {
-			printf("frok faild: can't create the process\n");
-	    	} else if (pid > 0) {	
-		    int status;
-		    wait(&status);
-		    WEXITSTATUS(status);
-		} else if (pid == 0) {
-
-		    execvp(argv[0], argv);
-
-		    printf("execvp faild: %s : invalid command\n", argv[0]);
-		    exit(-1);
-		}
+		    pid_t pid = fork();
+		    if (pid < 0) {
+		        perror("fork");
+		        last_status = 1;
+		    } else if (pid == 0) {
+		        execvp(cmd_argv[0], cmd_argv);
+		        fprintf(stderr, "%s: command not found\n", cmd_argv[0]);
+		        exit(EXIT_FAILURE);
+		    } else {
+		        int status;
+		        waitpid(pid, &status, 0);
+		        last_status = WEXITSTATUS(status);
+		    }
 	    }
 
 	    // Free argv and its elements

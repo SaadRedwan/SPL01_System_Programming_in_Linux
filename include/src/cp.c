@@ -3,11 +3,11 @@
 
 
 
-int cp_main(int argc, char **argv) {
+void cp_main(int argc, char **argv) {
 
     if (argc != 3) {
 	fprintf(stderr, "Usage %s source destination\n", argv[0]);
-	return -1;
+	exit(1);
     }
 
     const char *src = argv[1];
@@ -21,14 +21,14 @@ int cp_main(int argc, char **argv) {
 
     if (fd_src == -1) {
 	fprintf(stderr, "open source faild: %s\n", strerror(errno));
-	return -1;
+	exit(127);
     }
 
     fd_dst = open(dst, O_WRONLY | O_CREAT | O_TRUNC, 0644);
     if (fd_dst == -1) {
 	fprintf(stderr, "open distination faild: %s\n", strerror(errno));
 	close(fd_dst);
-	return -1;
+	exit(127);
     }
 
 
@@ -44,7 +44,7 @@ int cp_main(int argc, char **argv) {
             		fprintf(stderr, "cp write failed: %s\n", strerror(errno));
             		close(fd_src);
             		close(fd_dst);
-            		return -1;
+            		exit(127);
         	}
         	ptr += write_count;
         	remaining -= write_count;
@@ -53,12 +53,11 @@ int cp_main(int argc, char **argv) {
 
     if (close(fd_src) == -1) {
 	fprintf(stderr, "close source faild: %s", strerror(errno));
-	return -1;
+	exit(127);
     }
 
     if (close(fd_dst) == -1) {
 	fprintf(stderr, "close destination faild: %s", strerror(errno));
-	return -1;
+	exit(127);
     }
-    return 0;
 }
