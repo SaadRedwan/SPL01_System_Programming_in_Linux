@@ -24,5 +24,6 @@ void process_assignment(const char *command);
 void femtoshell_main(void);
 void picoshell_main(void);
 void nanoshell_main(void);
+void microshell_main(void);
 
 #endif /* SRRLIB_H */
